@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter — Celsius, Fahrenheit & Kelvin</title>
+  <meta name="description" content="Interactive real-time temperature converter tool with input validation, absolute zero edge-case handling, and multi-unit outputs.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="converter-container">
+    <!-- Header -->
+    <header class="app-header">
+      <h1 class="app-title">🌡️ TempConverter</h1>
+      <p class="app-subtitle">Real-time conversion between Celsius, Fahrenheit & Kelvin</p>
+    </header>
+
+    <!-- Quick Presets -->
+    <div class="presets-group">
+      <span class="presets-label">Quick Presets</span>
+      <div class="presets-buttons">
+        <button type="button" class="preset-btn" data-val="0">🧊 Freezing (0°C)</button>
+        <button type="button" class="preset-btn" data-val="20">🌿 Room (20°C)</button>
+        <button type="button" class="preset-btn" data-val="37">🧍 Body (37°C)</button>
+        <button type="button" class="preset-btn" data-val="100">♨️ Boiling (100°C)</button>
+      </div>
+    </div>
+
+    <!-- Converter Form -->
+    <form class="converter-form" onsubmit="event.preventDefault();">
+      <div class="input-row">
+        <div class="field-group">
+          <label class="field-label" for="tempInput">Enter Temperature Value</label>
+          <input type="text" id="tempInput" class="temp-input" value="25" placeholder="e.g. 25 or -10" autocomplete="off">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="fromUnit">Input Unit</label>
+          <select id="fromUnit" class="unit-select">
+            <option value="C" selected>Celsius (°C)</option>
+            <option value="F">Fahrenheit (°F)</option>
+            <option value="K">Kelvin (K)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Error / Warning Alert Box -->
+      <div class="error-box" id="errorBox">
+        <span class="error-icon">⚠️</span>
+        <span id="errorMsg">Please enter a valid numeric value.</span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="button-group">
+        <button type="button" id="convertBtn" class="btn btn-convert">
+          <span>Convert Values</span> &rarr;
+        </button>
+        <button type="button" id="resetBtn" class="btn btn-reset">Reset</button>
+      </div>
+    </form>
+
+    <!-- Simultaneous Conversion Results -->
+    <section class="results-section">
+      <div class="results-grid">
+        <div class="result-card" data-unit="C">
+          <div class="result-unit-title">Celsius (°C)</div>
+          <div class="result-value" id="celsiusVal">25.00 °C</div>
+        </div>
+
+        <div class="result-card" data-unit="F">
+          <div class="result-unit-title">Fahrenheit (°F)</div>
+          <div class="result-value" id="fahrenheitVal">77.00 °F</div>
+        </div>
+
+        <div class="result-card" data-unit="K">
+          <div class="result-unit-title">Kelvin (K)</div>
+          <div class="result-value" id="kelvinVal">298.15 K</div>
+        </div>
+      </div>
+
+      <!-- Dynamic Thermal Gauge Bar -->
+      <div class="gauge-container">
+        <div class="gauge-header">
+          <span>Thermal Spectrum</span>
+          <span id="gaugeText">State: Mild / Room Temp 🌿</span>
+        </div>
+        <div class="gauge-bar-bg">
+          <div class="gauge-fill" id="gaugeFill" style="width: 45%;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-info">
+      <p>Formulas: °F = (°C × 9/5) + 32 | K = °C + 273.15</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
